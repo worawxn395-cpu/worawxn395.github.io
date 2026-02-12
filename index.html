@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Create Evaluation</title>
+<title>Satisfaction Evaluation System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{font-family:sans-serif;background:#eef2ff;padding:20px}
-input,button{padding:10px;margin:5px;width:100%}
-.question{margin-bottom:10px}
+body{
+  font-family:sans-serif;
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#4e73df,#6f42c1);
+  color:white;
+  text-align:center;
+}
+.box{
+  background:rgba(255,255,255,0.1);
+  padding:40px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+}
+a{
+  display:block;
+  margin:15px 0;
+  padding:15px;
+  background:white;
+  color:#4e73df;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:bold;
+}
 </style>
 </head>
+
 <body>
-
-<h2>สร้างแบบประเมิน</h2>
-<input id="title" placeholder="ชื่อแบบประเมิน เช่น แบบประเมินร้านอาหาร">
-
-<div id="questions"></div>
-<button onclick="addQuestion()">+ เพิ่มคำถาม</button>
-<button onclick="saveForm()">บันทึกแบบประเมิน</button>
-
-<script>
-function addQuestion(){
-  let div=document.createElement("div")
-  div.className="question"
-  div.innerHTML=`<input placeholder="พิมพ์คำถาม">
-  <input placeholder="ใส่อิโมจิ เช่น 😊">`
-  document.getElementById("questions").appendChild(div)
-}
-
-function saveForm(){
-  let title=document.getElementById("title").value
-  let qs=[]
-  document.querySelectorAll(".question").forEach(q=>{
-    let inputs=q.querySelectorAll("input")
-    qs.push({text:inputs[0].value,emoji:inputs[1].value})
-  })
-  localStorage.setItem("formData",JSON.stringify({title,qs}))
-  alert("บันทึกแล้ว ไปหน้า form.html เพื่อทำแบบประเมิน")
-}
-</script>
-
+<div class="box">
+  <h1>📊 ระบบประเมินความพึงพอใจ</h1>
+  <a href="create.html">✏️ สร้างแบบประเมิน</a>
+  <a href="form.html">📝 ทำแบบประเมิน</a>
+</div>
 </body>
 </html>
