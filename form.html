@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Evaluation Form</title>
+<style>
+body{font-family:sans-serif;background:#f8f9ff;padding:20px}
+.question{
+  margin-bottom:15px;
+  padding:10px;
+  background:white;
+  border-radius:10px;
+}
+button{
+  padding:10px 20px;
+}
+</style>
+</head>
+<body>
+
+<h2 id="formTitle"></h2>
+<div id="formArea"></div>
+
+<button onclick="submitForm()">ส่งคำตอบ</button>
+
+<script>
+let data=JSON.parse(localStorage.getItem("formData"))
+
+if(data){
+  document.getElementById("formTitle").innerText=data.title
+
+  data.qs.forEach((q,i)=>{
+    let div=document.createElement("div")
+    div.className="question"
+    div.innerHTML=`
+      ${q.text} ${q.emoji}<br>
+      <select>
+        <option value="5">5 มากที่สุด</option>
+        <option value="4">4 มาก</option>
+        <option value="3">3 ปานกลาง</option>
+        <option value="2">2 น้อย</option>
+        <option value="1">1 น้อยที่สุด</option>
+      </select>
+    `
+    document.getElementById("formArea").appendChild(div)
+  })
+}
+
+function submitForm(){
+  alert("ขอบคุณสำหรับการประเมิน")
+}
+</script>
+
+</body>
+</html>
