@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Create Evaluation</title>
+<style>
+body{font-family:sans-serif;background:#eef2ff;padding:20px}
+input,button{padding:10px;margin:5px;width:100%}
+.question{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<h2>สร้างแบบประเมิน</h2>
+
+<input id="title" placeholder="ชื่อแบบประเมิน เช่น แบบประเมินร้านอาหาร">
+
+<div id="questions"></div>
+
+<button onclick="addQuestion()">+ เพิ่มคำถาม</button>
+<button onclick="saveForm()">บันทึกแบบประเมิน</button>
+
+<script>
+function addQuestion(){
+  let div=document.createElement("div")
+  div.className="question"
+  div.innerHTML=`<input placeholder="พิมพ์คำถาม">
+  <input placeholder="ใส่อิโมจิ เช่น 😊">`
+  document.getElementById("questions").appendChild(div)
+}
+
+function saveForm(){
+  let title=document.getElementById("title").value
+  let qs=[]
+  document.querySelectorAll(".question").forEach(q=>{
+    let inputs=q.querySelectorAll("input")
+    qs.push({text:inputs[0].value,emoji:inputs[1].value})
+  })
+  localStorage.setItem("formData",JSON.stringify({title,qs}))
+  alert("บันทึกแล้ว ไปที่หน้า ทำแบบประเมิน ได้เลย")
+}
+</script>
+
+</body>
+</html>
